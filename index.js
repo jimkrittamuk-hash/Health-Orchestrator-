@@ -20,6 +20,14 @@ app.post('/webhook', async (req, res) => {
 });
 
 app.get('/', (req, res) => res.send('Health Orchestrator is running.'));
+app.get('/test', async (req, res) => {
+  try {
+    const result = await callGemini('ตอบว่า OK เท่านั้น');
+    res.json({ success: true, response: result });
+  } catch (e) {
+    res.json({ success: false, error: e.message, details: e.response?.data });
+  }
+});
 
 // ─── PROCESS MESSAGE ────────────────────────────────────────
 async function processMessage(text, replyToken, userId) {
