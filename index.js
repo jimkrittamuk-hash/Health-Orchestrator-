@@ -22,13 +22,15 @@ app.post('/webhook', async (req, res) => {
 app.get('/', (req, res) => res.send('Health Orchestrator is running.'));
 app.get('/test', async (req, res) => {
   try {
-    const result = await callGemini('ตอบว่า OK เท่านั้น');
-    res.json({ success: true, response: result });
+    const { data } = await axios.post(GEMINI_URL, {
+      contents: [{ parts: [{ text: 'ตอบว่า OK' }] }],
+      generationConfig: { temperature: 0.7, maxOutputTokens: 100 }
+    });
+    res.json({ success: true, response: data.candidates[0].content.parts[0].text });
   } catch (e) {
-    res.json({ success: false, error: e.message, details: e.response?.data });
+    res.json({ success: false, status: e.response?.status, error: e.response?.data });
   }
 });
-
 // ─── PROCESS MESSAGE ────────────────────────────────────────
 async function processMessage(text, replyToken, userId) {
   const cmd = text.toLowerCase();
