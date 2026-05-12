@@ -30,7 +30,20 @@ app.get('/test', async (req, res) => {
   } catch (e) {
     res.json({ success: false, status: e.response?.status, error: e.response?.data });
   }
+
+  });
+
+app.get('/models', async (req, res) => {
+  try {
+    const { data } = await axios.get(
+      `https://generativelanguage.googleapis.com/v1beta/models?key=${GEMINI_KEY}`
+    );
+    res.json(data.models.map(m => m.name));
+  } catch (e) {
+    res.json({ error: e.response?.data });
+  }
 });
+
 // ─── PROCESS MESSAGE ────────────────────────────────────────
 async function processMessage(text, replyToken, userId) {
   const cmd = text.toLowerCase();
