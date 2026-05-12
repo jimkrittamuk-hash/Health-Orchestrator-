@@ -4,8 +4,8 @@ const app     = express();
 app.use(express.json());
 
 const LINE_TOKEN  = 'gySEWqsIGyhAL0nC8g2WROnzgSuFWXyDmQWEP5yVQTHpimQbbWo4xOIj0y7AYfbjihmsECA6+mmpHfJ13ybvIf/eO4VamBfq3UdJvjYKRohqkQpn8tswwETkCd8DDyAFGbL8AHLudKU7Y7g+0KtYoAdB04t89/1O/w1cDnyilFU=';
-const GEMINI_KEY  = 'AIzaSyCJdxs18hgceuFF-FYd-A3lM90IwUnHo-c';
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${GEMINI_KEY}`;
+const GEMINI_KEY  = 'AIzaSyDQmtqAliCQ61lnnxYUpHT3saAAi3SXp5c';
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_KEY}`;
 const GAS_LOG_URL = 'https://script.google.com/macros/s/AKfycbz8GzzpZFIOMolywy9IwYW9E2uCo54IGLO8KaRLXuJeCB_CqojPrKqTIe5IsbWlKEZw/exec';
 
 // ─── WEBHOOK ────────────────────────────────────────────────
